@@ -111,12 +111,12 @@ body {
   }
 
   #start {
-    width: 100px;
+    width: 220px;
   }
 
   #result {
-    height: 50px;
-    width: 100px;
+    height: 40px;
+    width: 220px;
   }
 }
 
@@ -141,14 +141,14 @@ body {
   }
 
   #start {
-    width: 75px;
+    width: 170px;
     font-size: 12px;
     padding: 10px 4px;
   }
 
   #result {
     height: 35px;
-    width: 75px;
-    font-size: 10px;
+    width: 170px;
+    font-size: 10 px;
   }
 }
