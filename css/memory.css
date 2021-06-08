@@ -142,10 +142,13 @@ body {
 
   #start {
     width: 75px;
+    font-size: 12px;
+    padding: 10px 4px;
   }
 
   #result {
-    height: 50px;
+    height: 35px;
     width: 75px;
+    font-size: 10px;
   }
 }
