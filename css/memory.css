@@ -9,9 +9,10 @@ body {
 .header-div {
   position: relative;
   height: 100px;
-  margin: 50px;
+  margin: 50px 0;
 }
 .header-div h1 {
+  width: fit-content;
   color: #eee;
   font-size: 84px;
   position: absolute;
@@ -87,4 +88,64 @@ body {
   width: 200px;
   text-align: center;
   display: none;
+}
+
+@media (max-width: 970px) {
+  .header-div h1 {
+    font-size: 74px;
+  }
+  .gameBord {
+    width: 460px;
+  }
+  .card {
+    width: 100px;
+    height: 100px;
+  }
+  .card img {
+    width: 100px;
+    height: 100px;
+  }
+  .preGame {
+    width: 460px;
+    height: 100px;
+  }
+
+  #start {
+    width: 100px;
+  }
+
+  #result {
+    height: 50px;
+    width: 100px;
+  }
+}
+
+@media (max-width: 500px) {
+  .header-div h1 {
+    font-size: 64px;
+  }
+  .gameBord {
+    width: 360px;
+  }
+  .card {
+    width: 75px;
+    height: 75px;
+  }
+  .card img {
+    width: 75px;
+    height: 75px;
+  }
+  .preGame {
+    width: 360px;
+    height: 100px;
+  }
+
+  #start {
+    width: 75px;
+  }
+
+  #result {
+    height: 50px;
+    width: 75px;
+  }
 }
