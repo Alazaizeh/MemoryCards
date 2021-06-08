@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #000;
+  font-family: "Anton", sans-serif;
+  color: #eee;
+}
+.header-div {
+  position: relative;
+  height: 100px;
+  margin: 50px;
+}
+.header-div h1 {
+  color: #eee;
+  font-size: 84px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.gameBord {
+  display: grid;
+  width: 860px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 20px;
+  margin: 0 auto 50px;
+}
+.card {
+  width: 200px;
+  height: 200px;
+  background: #eee;
+  border: 1px solid #777;
+  position: relative;
+  overflow: hidden;
+}
+.card img {
+  width: 200px;
+  height: 200px;
+}
+.card div {
+  width: 100%;
+  height: 100%;
+  background: #777;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 1s;
+}
+
+/* .card div:hover {
+  transform: translateX(-100%) rotateY(-180deg);
+} */
+.preGame {
+  position: relative;
+  width: 860px;
+  height: 100px;
+  margin: 0 auto;
+}
+#start {
+  display: block;
+  background-color: limegreen;
+  color: #fff;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  width: 200px;
+  cursor: pointer;
+  /* position: absolute;
+  left: 50%;
+  transform: translateX(-50%); */
+}
+
+#start:hover {
+  background-color: rgb(34, 141, 34);
+}
+
+#result {
+  background: #ffa500;
+  height: 50px;
+  color: #000;
+  /* border-radius: 10px; */
+  padding: 10px;
+  margin-top: 10px;
+  width: 200px;
+  text-align: center;
+  display: none;
+}
