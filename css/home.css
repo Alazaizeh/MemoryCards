@@ -40,7 +40,7 @@ body {
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 600px;
+  width: 75%;
 }
 .gameCard .game-title h2 {
   font-size: 32px;
@@ -49,9 +49,25 @@ body {
 }
 .gameCard img {
   display: inline-block;
-  width: 200px;
-  height: 200px;
+  width: 25%;
+  /* height: 200px; */
   position: absolute;
   top: 0;
   right: 0;
+}
+
+@media (max-width: 960px) {
+  .gameCard {
+    height: 200px;
+    width: 600px;
+  }
+}
+@media (max-width: 680px) {
+  .gameCard {
+    height: 200px;
+    width: 350px;
+  }
+  .header-div h1 {
+    font-size: 40px;
+  }
 }
