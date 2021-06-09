@@ -35,11 +35,14 @@ body {
   background: #eee;
   border: 1px solid #777;
   position: relative;
-  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: 2s;
 }
+
 .card img {
   width: 200px;
   height: 200px;
+  transform: rotateY(180deg);
 }
 .card div {
   width: 100%;
@@ -51,9 +54,9 @@ body {
   transition: 1s;
 }
 
-/* .card div:hover {
-  transform: translateX(-100%) rotateY(-180deg);
-} */
+.flip {
+  transform: rotateY(180deg);
+}
 .preGame {
   position: relative;
   width: 860px;
@@ -69,9 +72,6 @@ body {
   border-radius: 10px;
   width: 200px;
   cursor: pointer;
-  /* position: absolute;
-  left: 50%;
-  transform: translateX(-50%); */
 }
 
 #start:hover {
@@ -82,7 +82,6 @@ body {
   background: #ffa500;
   height: 50px;
   color: #000;
-  /* border-radius: 10px; */
   padding: 10px;
   margin-top: 10px;
   width: 200px;

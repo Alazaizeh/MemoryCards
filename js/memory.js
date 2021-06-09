@@ -29,9 +29,11 @@ class Card {
     card.className = "card";
     card.setAttribute("onclick", `showCard(${this.cardIndex},${this.imgPath})`);
     let img = document.createElement("img");
+    img.className = "front-face";
     img.setAttribute("src", `../imgs/memory/${this.imgPath}.png`);
     card.appendChild(img);
     let overlay = document.createElement("div");
+    overlay.className = "back-face";
     card.appendChild(overlay);
     board.appendChild(card);
   }
@@ -39,39 +41,36 @@ class Card {
 
 function showCard(index, path) {
   if (StartFlag) {
-    let pic = document.getElementsByClassName("card")[index];
-    pic = pic.childNodes[1];
-
-    if (pic.style.transform != "translateX(-100%) rotateY(-180deg)") {
-      stepsCount++;
-      document.getElementById("result").style.display = "block";
-      document.getElementById("result").textContent = `Moves: ${stepsCount}`;
-      clickIndex.push(path);
-      mathchedIndex.push(index);
-      pic.style.transform = "translateX(-100%) rotateY(-180deg)";
-      clickCounter++;
-
+    let card = document.getElementsByClassName("card")[index];
+    if (card.style.transform != "rotateY(180deg)") {
       if (clickIndex.length == 2) {
         if (clickIndex[0] == clickIndex[1]) {
           DontClear.push(mathchedIndex[0]);
           DontClear.push(mathchedIndex[1]);
-          stepsCount++;
-          if (DontClear.length == 16) {
-            document.getElementById(
-              "result"
-            ).textContent = `You won !!! Moves: ${stepsCount - 1}`;
-
-            setTimeout(function () {
-              resetGame();
-            }, 2500);
-          }
         }
         clickCounter = 0;
         clickIndex = [];
         mathchedIndex = [];
         resetCard(DontClear);
-        stepsCount--;
-        showCard(index, path);
+      }
+      stepsCount++;
+      document.getElementById("result").style.display = "block";
+      document.getElementById("result").textContent = `Moves: ${stepsCount}`;
+      clickIndex.push(path);
+      mathchedIndex.push(index);
+      card.style.transform = "rotateY(180deg)";
+      clickCounter++;
+      console.log(DontClear.length);
+      if (DontClear.length == 14) {
+        if (stepsCount % 2 == 0) {
+          document.getElementById(
+            "result"
+          ).textContent = `You won !!! Moves: ${stepsCount}`;
+
+          setTimeout(function () {
+            resetGame();
+          }, 2500);
+        }
       }
     }
   }
@@ -99,12 +98,10 @@ function resetCard(x) {
   for (let index = 0; index < 16; index++) {
     if (x.indexOf(index) == -1) {
       let pic = document.getElementsByClassName("card")[index];
-      pic = pic.childNodes[1];
       pic.style.transform = "";
     } else {
       let pic = document.getElementsByClassName("card")[index];
-      pic = pic.childNodes[1];
-      pic.style.transform = "translateX(-100%) rotateY(-180deg)";
+      pic.style.transform = "rotateY(180deg)";
     }
   }
 }
@@ -122,11 +119,11 @@ function startTheGame(e) {
 
   let all = document.getElementsByClassName("card");
   for (let i = 0; i < all.length; i++) {
-    all[i].childNodes[1].style.opacity = "0";
+    all[i].style.transform = "rotateY(180deg)";
   }
   setTimeout(function () {
     for (let i = 0; i < all.length; i++) {
-      all[i].childNodes[1].style.opacity = "1";
+      all[i].style.transform = "";
     }
   }, 2500);
   board.style.cursor = "pointer";
