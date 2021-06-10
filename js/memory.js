@@ -30,7 +30,7 @@ class Card {
     card.setAttribute("onclick", `showCard(${this.cardIndex},${this.imgPath})`);
     let img = document.createElement("img");
     img.className = "front-face";
-    img.setAttribute("src", `../imgs/memory/${this.imgPath}.png`);
+    img.setAttribute("src", `imgs/memory/${this.imgPath}.png`);
     card.appendChild(img);
     let overlay = document.createElement("div");
     overlay.className = "back-face";
