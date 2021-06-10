@@ -2,12 +2,12 @@
 
 let board = document.getElementsByClassName("gameBord")[0];
 let arr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
-let clickCounter = 0;
-let clickIndex = [];
-let mathchedIndex = [];
+let flipedCards = [];
+let flipedIndex = [];
+let matchedCards = [];
 let StartFlag = false;
-let DontClear = [];
 let stepsCount = 0;
+
 class Card {
   constructor(cardIndex, imgPath = 0) {
     this.imgPath = imgPath;
@@ -43,43 +43,59 @@ function showCard(index, path) {
   if (StartFlag) {
     let card = document.getElementsByClassName("card")[index];
     if (card.style.transform != "rotateY(180deg)") {
-      if (clickIndex.length == 2) {
-        if (clickIndex[0] == clickIndex[1]) {
-          DontClear.push(mathchedIndex[0]);
-          DontClear.push(mathchedIndex[1]);
-        }
-        clickCounter = 0;
-        clickIndex = [];
-        mathchedIndex = [];
-        resetCard(DontClear);
-      }
-      stepsCount++;
-      document.getElementById("result").style.display = "block";
-      document.getElementById("result").textContent = `Moves: ${stepsCount}`;
-      clickIndex.push(path);
-      mathchedIndex.push(index);
       card.style.transform = "rotateY(180deg)";
-      clickCounter++;
-      console.log(DontClear.length);
-      if (DontClear.length == 14) {
-        if (stepsCount % 2 == 0) {
-          document.getElementById(
-            "result"
-          ).textContent = `You won !!! Moves: ${stepsCount}`;
+      stepsCount++;
+      document.getElementById("result").textContent = `Moves: ${stepsCount} `;
+      flipedCards.push(path);
+      flipedIndex.push(index);
+      if (flipedCards.length == 2) {
+        if (flipedCards[0] == flipedCards[1]) {
+          matchedCards.push(flipedIndex[0]);
+          matchedCards.push(flipedIndex[1]);
+          /**
+           * @type {HTMLElement}
+           */
 
-          setTimeout(function () {
-            resetGame();
-          }, 2500);
+          let c = document.getElementsByClassName("card")[flipedIndex[0]];
+          c.style.backgroundColor = "transparent";
+
+          c = document.getElementsByClassName("card")[flipedIndex[1]];
+          c.style.backgroundColor = "transparent";
+
+          flipedIndex = [];
+          flipedCards = [];
         }
+      } else if (flipedCards.length == 3) {
+        let FI = flipedIndex[2];
+        let FC = flipedCards[2];
+        resetCard(matchedCards, FI);
+        flipedIndex.push(FI);
+        flipedCards.push(FC);
       }
     }
+  }
+  console.log(
+    `%c StepsCount: ${stepsCount} , FlipedCards: ${flipedCards.length}  ,  FlipedIndex: ${flipedIndex.length} ,matchedCards ${matchedCards.length}`,
+    "background: #fff;font-size:32px; color: red"
+  );
+
+  if (matchedCards.length == 16) {
+    document.getElementById(
+      "result"
+    ).textContent = `You won !!! Moves: ${stepsCount}`;
+    document.getElementById("result").style.width = "100%";
+    board.style.opacity = "0.1";
+    document.getElementById("start").textContent = "Restart Game";
+    document.getElementById("start").addEventListener("click", function () {
+      location.reload();
+    });
   }
 }
 
 function resetGame() {
   StartFlag = false;
   arr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
-  DontClear = [];
+  matchedCards = [];
   stepsCount = 0;
   board.textContent = "";
   for (let i = 0; i < 16; i++) {
@@ -90,13 +106,12 @@ function resetGame() {
   document.getElementById("start").addEventListener("click", startTheGame);
 }
 
-function resetCard(x) {
+function resetCard(x, c) {
   if (x.length == 0) {
     x = [16, 17];
   }
-
   for (let index = 0; index < 16; index++) {
-    if (x.indexOf(index) == -1) {
+    if (x.indexOf(index) == -1 && c != index) {
       let pic = document.getElementsByClassName("card")[index];
       pic.style.transform = "";
     } else {
@@ -104,6 +119,8 @@ function resetCard(x) {
       pic.style.transform = "rotateY(180deg)";
     }
   }
+  flipedCards = [];
+  flipedIndex = [];
 }
 
 for (let i = 0; i < 16; i++) {
@@ -127,6 +144,8 @@ function startTheGame(e) {
     }
   }, 2500);
   board.style.cursor = "pointer";
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").textContent = "Let Play";
 
   document.getElementById("start").removeEventListener("click", startTheGame);
 }
