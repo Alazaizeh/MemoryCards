@@ -55,7 +55,6 @@ function showCard(index, path) {
           /**
            * @type {HTMLElement}
            */
-
           let c = document.getElementsByClassName("card")[flipedIndex[0]];
           c.style.backgroundColor = "transparent";
 
@@ -64,27 +63,24 @@ function showCard(index, path) {
 
           flipedIndex = [];
           flipedCards = [];
+        } else {
+          board.style.pointerEvents = "none";
+          setTimeout(() => {
+            resetCard(matchedCards);
+            board.style.pointerEvents = "all";
+          }, 1000);
         }
-      } else if (flipedCards.length == 3) {
-        let FI = flipedIndex[2];
-        let FC = flipedCards[2];
-        resetCard(matchedCards, FI);
-        flipedIndex.push(FI);
-        flipedCards.push(FC);
       }
     }
   }
-  console.log(
-    `%c StepsCount: ${stepsCount} , FlipedCards: ${flipedCards.length}  ,  FlipedIndex: ${flipedIndex.length} ,matchedCards ${matchedCards.length}`,
-    "background: #fff;font-size:32px; color: red"
-  );
 
   if (matchedCards.length == 16) {
     document.getElementById(
       "result"
     ).textContent = `You won !!! Moves: ${stepsCount}`;
-    document.getElementById("result").style.width = "100%";
-    board.style.opacity = "0.1";
+    board.style.opacity = "0.5";
+    board.style.pointerEvents = "none";
+
     document.getElementById("start").textContent = "Restart Game";
     document.getElementById("start").addEventListener("click", function () {
       location.reload();
@@ -149,3 +145,4 @@ function startTheGame(e) {
 
   document.getElementById("start").removeEventListener("click", startTheGame);
 }
+Array;

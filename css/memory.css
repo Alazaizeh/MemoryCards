@@ -91,64 +91,7 @@ body {
 }
 
 @media (max-width: 970px) {
-  .header-div h1 {
-    font-size: 74px;
-  }
-  .gameBord {
-    width: 460px;
-  }
-  .card {
-    width: 100px;
-    height: 100px;
-  }
-  .card img {
-    width: 100px;
-    height: 100px;
-  }
-  .preGame {
-    width: 460px;
-    height: 100px;
-  }
-
-  #start {
-    width: 220px;
-  }
-
-  #result {
-    height: 40px;
-    width: 220px;
-  }
 }
 
 @media (max-width: 500px) {
-  .header-div h1 {
-    font-size: 64px;
-  }
-  .gameBord {
-    width: 360px;
-  }
-  .card {
-    width: 75px;
-    height: 75px;
-  }
-  .card img {
-    width: 75px;
-    height: 75px;
-  }
-  .preGame {
-    width: 360px;
-    height: 100px;
-  }
-
-  #start {
-    width: 170px;
-    font-size: 12px;
-    padding: 10px 4px;
-  }
-
-  #result {
-    height: 35px;
-    width: 170px;
-    font-size: 10 px;
-  }
 }
